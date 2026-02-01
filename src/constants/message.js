@@ -1,4 +1,5 @@
-module.exports = {
+
+const message = {
   USER: {
     REGISTER_SUCCESS: 'OTP sent to your email',
     EMAIL_ALREADY_EXISTS: 'Email already registered',
@@ -7,11 +8,10 @@ module.exports = {
     OTP_VERIFIED: 'OTP verified successfully',
     OTP_EXPIRED: 'OTP has expired',
     OTP_INVALID: 'Invalid OTP',
-    OTP_FORMAT:"Please enter six digit otp",
-    INVALID_SIZE_PASSWORD: "Password must be at least 6 character",
-    INVAILD_NAME: "Name must be at least 4 character",
-    SECRET_ERROR:"Please register again"
-
+    OTP_FORMAT: 'Please enter six digit otp',
+    INVALID_SIZE_PASSWORD: 'Password must be at least 6 character',
+    INVAILD_NAME: 'Name must be at least 4 character',
+    SECRET_ERROR: 'Please register again'
   },
 
   AUTH: {
@@ -25,3 +25,5 @@ module.exports = {
     VALIDATION_ERROR: 'Invalid request data'
   }
 };
+
+export default message;

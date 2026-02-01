@@ -1,18 +1,37 @@
-const message = require('../constants/message')
-const { responseFailure } = require('../utils/response.utils')
-module.exports = (req, res, next) => {
-    const { email, name, password, otp } = req.body;
-    if (!email || !name || !password || !otp) {
-        console.log("i am here")
-        return res.status(400).json(responseFailure(message.COMMON.VALIDATION_ERROR, 400));
-    }
-    if (name.length < 4) {
-        console.log("i am here1")
-        return res.status(400).json(responseFailure(message.USER.INVAILD_NAME, 400));
-    }
-    if (otp.toString().length < 6) {
-        console.log("i am here2")
-        return res.status(400).json(responseFailure(message.USER.OTP_FORMAT, 400))
-    }
-    next()
-}
+
+import message from '../constants/message.js';
+import { responseFailure } from '../utils/response.utils.js';
+
+export default (req, res, next) => {
+  const { email, name, password, otp } = req.body;
+
+  // Required fields check
+  if (!email || !name || !password || !otp) {
+    return res
+      .status(400)
+      .json(responseFailure(message.COMMON.VALIDATION_ERROR, 400));
+  }
+
+  // Name validation
+  if (name.length < 4) {
+    return res
+      .status(400)
+      .json(responseFailure(message.USER.INVAILD_NAME, 400));
+  }
+
+  // Password validation
+  if (password.length < 6) {
+    return res
+      .status(400)
+      .json(responseFailure(message.USER.INVALID_SIZE_PASSWORD, 400));
+  }
+
+  // OTP validation
+  if (otp.toString().length !== 6) {
+    return res
+      .status(400)
+      .json(responseFailure(message.USER.OTP_FORMAT, 400));
+  }
+
+  next();
+};

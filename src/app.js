@@ -1,10 +1,9 @@
-const express = require('express')
-const app = express();
-const userRouter = require('./routers/users.route')
-app.use(express.json())
-app.use('/test', userRouter);
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+import express from 'express';
+import userRoutes from './routers/users.route.js';
 
-module.exports = app;
+const app = express();
+
+app.use(express.json());
+app.use('/api/user', userRoutes);
+
+export default app;

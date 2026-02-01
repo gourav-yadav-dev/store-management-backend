@@ -1,13 +1,23 @@
-const { responseFailure } = require('../utils/response.utils')
-const { verifOtp } = require('../services/verifyuser.services')
-module.exports = async (req, res) => {
+
+
+
+
+import { responseFailure } from '../utils/response.utils.js';
+import { verifyOtp } from '../services/verifyuser.services.js';
+
+export default async (req, res) => {
     try {
         const { email, password, otp, name } = req.body;
-        await verifOtp({ email, password, otp, name })
 
-    }
+        await verifyOtp({ email, password, otp, name });
 
-    catch (error) {
-        return res.status(400).json(responseFailure(error.message, 400))
+        return res.status(200).json({
+            success: true,
+            message: 'OTP verified successfully'
+        });
+    } catch (error) {
+        return res
+            .status(400)
+            .json(responseFailure(error.message, 400));
     }
-}
+};

@@ -1,11 +1,15 @@
-exports.responseSuccess = (message, data = null, statuscode) => ({
+
+
+export const responseSuccess = (message, data = null, statuscode = 200) => ({
     success: true,
-    message: message,
-    statuscode: statuscode,
-    data: data
-})
-exports.responseFailure = (message, statuscode) => ({
-    success: true,
-    message: message,
-    statuscode: statuscode
-})
+    message,
+    statuscode,
+    data
+  });
+  
+  export const responseFailure = (message, statuscode = 400) => ({
+    success: false,
+    message,
+    statuscode
+  });
+  
