@@ -5,20 +5,16 @@ import message from '../constants/message.js';
 
 export const verifyEmail = async ({ email }) => {
 
-    console.log("i am here")
+
     const [existingUser] = await pool.execute(
         'Select user_id from users where email=?', [email])
     if (existingUser.length > 0) {
-        console.log("then i am here")
         throw new Error(message.USER.EMAIL_ALREADY_EXISTS)
     }
     if (sendOTP({ email })) {
-
-
+        return true
     }
 }
-
-
 export const sendOTP = async ({ email }) => {
 
     const sixDigit = Math.floor(100000 + Math.random() * 900000);

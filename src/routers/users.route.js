@@ -12,5 +12,13 @@ const router = Router();
 
 router.post('/register', userValidateMiddleware, registers);
 router.post('/verifyotp', userotpValidateMiddleWare, verifyOtpController);
+router.post('/forgetpasswordotp', userValidateMiddleware, verifyOtpController)
+// router.post('/forgetpassword', userValidateMiddleware, registers)
+// router.post('/forgetpassword', )
+
+
+
+
+
 
 export default router;

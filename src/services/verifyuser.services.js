@@ -1,7 +1,11 @@
 
 import pool from '../config/db.js';
 import message from '../constants/message.js';
-export const verifyOtp = async ({ email, otp }) => {
+import bcrypt from "bcrypt";
+
+export const verifyOtp = async ({ email, password, otp, name, forgetPasswordOtp = false }) => {
+    console.log("i am here")
+    console.log(forgetPasswordOtp)
     const [rows] = await pool.execute(
         'SELECT secret,created_at FROM email_otps WHERE email=?',
         [email]
@@ -17,9 +21,24 @@ export const verifyOtp = async ({ email, otp }) => {
 
     const date = new Date();
     if (!isValidWithin5MinSamePeriod(date, rows[0].created_at)) {
-
         throw new Error(message.USER.OTP_EXPIRED)
     }
+
+    if (forgetPasswordOtp == true) {
+        return true
+    }
+    const chiperPassword = await hashPassword(String(password))
+
+    const [result] = await pool.execute(
+        `INSERT INTO users (name, email, password, status)
+         VALUES (?, ?, ?, ?)`,
+        [name, email, chiperPassword, 'ACTIVE']
+    );
+   
+    if (result.affectedRows !== 1) {
+        throw new Error('User registration failed');
+    }
+    
 
 };
 
@@ -36,4 +55,10 @@ function isValidWithin5MinSamePeriod(d1, d2) {
     if ((d1.getHours() < 12) !== (d2.getHours() < 12)) return false;
 
     return Math.abs(d2 - d1) <= 5 * 60 * 1000;
+}
+
+
+async function hashPassword(password) {
+    password = password.toString()
+    return await bcrypt.hash(password, 10);
 }
