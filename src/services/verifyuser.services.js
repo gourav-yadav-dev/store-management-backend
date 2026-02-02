@@ -2,8 +2,9 @@
 import pool from '../config/db.js';
 import message from '../constants/message.js';
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
-export const verifyOtp = async ({ email, password, otp, name, forgetPasswordOtp = false }) => {
+export const verifyOtp = async ({ email, password = null, otp, name = null, forgetPasswordOtp = false }) => {
     console.log("i am here")
     console.log(forgetPasswordOtp)
     const [rows] = await pool.execute(
@@ -25,20 +26,31 @@ export const verifyOtp = async ({ email, password, otp, name, forgetPasswordOtp 
     }
 
     if (forgetPasswordOtp == true) {
-        return true
+        // const data = generateToken(email)
+        const sixDigit = Math.floor(100000 + Math.random() * 900000);
+        const hashtoken = await hashPassword(sixDigit)
+        pool.execute(
+            'INSERT INTO email_tokens_forgetpassword (token, email) VALUES(?, ?)', [hashtoken, email]
+        )
+        return undefined
     }
     const chiperPassword = await hashPassword(String(password))
 
+    const [existingUser] = await pool.execute(
+        'Select user_id from users where email=?', [email])
+    if (existingUser.length > 0) {
+        throw new Error(message.USER.EMAIL_ALREADY_EXISTS)
+    }
     const [result] = await pool.execute(
         `INSERT INTO users (name, email, password, status)
          VALUES (?, ?, ?, ?)`,
         [name, email, chiperPassword, 'ACTIVE']
     );
-   
+
     if (result.affectedRows !== 1) {
         throw new Error('User registration failed');
     }
-    
+
 
 };
 
@@ -62,3 +74,5 @@ async function hashPassword(password) {
     password = password.toString()
     return await bcrypt.hash(password, 10);
 }
+
+

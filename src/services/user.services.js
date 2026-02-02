@@ -4,8 +4,6 @@ import transporter from '../config/mail.js';
 import message from '../constants/message.js';
 
 export const verifyEmail = async ({ email }) => {
-
-
     const [existingUser] = await pool.execute(
         'Select user_id from users where email=?', [email])
     if (existingUser.length > 0) {

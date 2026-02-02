@@ -13,6 +13,25 @@ export default (req, res, next) => {
             .json(responseFailure(message.AUTH.INVALID_CREDENTIALS, 400));
     }
 
+    if (req.url == '/resetpassword') {
+        const { password, token, email } = req.body;
+        if (!password) {
+
+        }
+        if (!token) {
+            return res
+                .status(400)
+                .json(responseFailure(message.USER.RESENDOTPFORRESETPASSWORD, 400));
+        }
+
+        if (password.length < 6) {
+            return res
+                .status(400)
+                .json(responseFailure(message.USER.INVALID_SIZE_PASSWORD, 400));
+        }
+
+    }
+
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -20,7 +39,7 @@ export default (req, res, next) => {
             .status(400)
             .json(responseFailure(message.USER.INVALID_EMAIL, 400));
     }
-    if (req.url == '/forgetpasswordotp') {
+    if (req.url == '/verifyotpforgetpass') {
         req.forgetPasswordOtp = true;
     }
     next();
