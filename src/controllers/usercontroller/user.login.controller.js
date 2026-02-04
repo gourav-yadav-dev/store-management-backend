@@ -1,6 +1,6 @@
-import { responseFailure, responseSuccess } from '../utils/response.utils.js';
-import { userLogin } from '../services/user.login.services.js';
-import message from '../constants/message.js'
+import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
+import { userLogin } from '../../services/Userservices/user.login.services.js';
+import message from '../../constants/message.js'
 export default async (req, res) => {
     try {
         const { email, password } = req.body;

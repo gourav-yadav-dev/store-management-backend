@@ -1,7 +1,7 @@
 
-import pool from '../config/db.js';
-import transporter from '../config/mail.js';
-import message from '../constants/message.js';
+import pool from '../../config/db.js';
+import transporter from '../../config/mail.js';
+import message from '../../constants/message.js';
 
 export const verifyEmail = async ({ email }) => {
     const [existingUser] = await pool.execute(

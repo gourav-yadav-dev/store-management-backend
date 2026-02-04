@@ -1,7 +1,7 @@
 
-import message from "../constants/message.js";
-import { userlogout } from "../services/user.logout.service.js";
-import { responseSuccess, responseFailure } from "../utils/response.utils.js";
+import message from "../../constants/message.js";
+import { userlogout } from "../../services/Userservices/user.logout.service.js";
+import { responseSuccess, responseFailure } from "../../utils/response.utils.js";
 export default async (req, res) => {
     try {
         await userlogout(req.cookie.refreshToken)

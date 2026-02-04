@@ -1,6 +1,6 @@
-import message from '../constants/message.js'
+import message from '../../constants/message.js'
 // import { responseFailure } from '../utils/response.utils'
-import pool from '../config/db.js'
+import pool from '../../config/db.js'
 import crypto from 'crypto'
 export async function userrefreshtoken(token) {
     const refreshTokenHash = crypto

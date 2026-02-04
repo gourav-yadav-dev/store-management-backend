@@ -1,6 +1,6 @@
 
-import pool from '../config/db.js';
-import message from '../constants/message.js';
+import pool from '../../config/db.js';
+import message from '../../constants/message.js';
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 

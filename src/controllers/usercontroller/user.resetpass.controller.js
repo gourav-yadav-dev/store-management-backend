@@ -1,8 +1,8 @@
 
 
-import { responseFailure, responseSuccess } from '../utils/response.utils.js';
-import { resetPassword } from '../services/user.resetpassword.services.js';
-import message from '../constants/message.js'
+import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
+import { resetPassword } from '../../services/Userservices/user.resetpassword.services.js';
+import message from '../../constants/message.js'
 
 export default async (req, res) => {
     try {

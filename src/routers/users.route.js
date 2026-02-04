@@ -2,15 +2,15 @@
 
 import { Router } from 'express';
 
-import { registers } from '../controllers/user.controller.js';
-import verifyOtpController from '../controllers/userverifyotp.controller.js';
-import userResetPasswordController from '../controllers/user.resetpass.controller.js'
-import userLoginController from '../controllers/user.login.controller.js'
-import userLogoutController from '../controllers/user.logout.controller.js';
+import { registers } from '../controllers/usercontroller/user.controller.js';
+import verifyOtpController from '../controllers/usercontroller/userverifyotp.controller.js';
+import userResetPasswordController from '../controllers/usercontroller/user.resetpass.controller.js'
+import userLoginController from '../controllers/usercontroller/user.login.controller.js'
+import userLogoutController from '../controllers/usercontroller/user.logout.controller.js';
+import userRefreshToken from '../controllers/usercontroller/user.resfreshtoken.controller.js'
 
 import userValidateMiddleware from '../middleware/validate.middleware.js';
 import userotpValidateMiddleWare from '../middleware/userRegisterValidateMiddleWare.js';
-import userRefreshToken from '../controllers/user.resfreshtoken.controller.js'
 
 const router = Router();
 

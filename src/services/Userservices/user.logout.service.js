@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import pool from '../config/db.js'
+import pool from '../../config/db.js'
 export async function userlogout(token) {
     const hash = crypto
         .createHash("sha256")

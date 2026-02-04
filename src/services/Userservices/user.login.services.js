@@ -1,7 +1,7 @@
 
-import pool from '../config/db.js'
+import pool from '../../config/db.js'
 import bcrypt from 'bcrypt'
-import message from '../constants/message.js'
+import message from '../../constants/message.js'
 import jsonwebtoken from 'jsonwebtoken'
 import crypto from 'crypto'
 

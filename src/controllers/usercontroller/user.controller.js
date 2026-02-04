@@ -1,8 +1,8 @@
 
 
-import { responseFailure, responseSuccess } from '../utils/response.utils.js';
-import { verifyEmail } from '../services/user.services.js';
-import message from '../constants/message.js';
+import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
+import { verifyEmail } from '../../services/Userservices/user.services.js';
+import message from '../../constants/message.js';
 
 export const registers = async (req, res) => {
   const { email } = req.body;

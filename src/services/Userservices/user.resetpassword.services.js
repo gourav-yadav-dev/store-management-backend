@@ -1,7 +1,7 @@
 
-import pool from '../config/db.js';
-import isValidWithin5MinSamePeriod, { hashPassword } from './verifyuser.services.js'
-import message from '../constants/message.js'
+import pool from '../../config/db.js';
+// import isValidWithin5MinSamePeriod, { hashPassword } from '../verifyuser.services.js'
+import message from '../../constants/message.js'
 export async function resetPassword(email, password, token) {
     console.log("inserivce")
     console.log(email)
