@@ -29,10 +29,11 @@ export const verifyOtp = async ({ email, password = null, otp, name = null, forg
         // const data = generateToken(email)
         const sixDigit = Math.floor(100000 + Math.random() * 900000);
         const hashtoken = await hashPassword(sixDigit)
-        pool.execute(
+        await pool.execute('DELETE FROM email_tokens_forgetpassword WHERE email=?', [email]);
+        await pool.execute(
             'INSERT INTO email_tokens_forgetpassword (token, email) VALUES(?, ?)', [hashtoken, email]
         )
-        return undefined
+        return hashtoken
     }
     const chiperPassword = await hashPassword(String(password))
 
@@ -54,7 +55,7 @@ export const verifyOtp = async ({ email, password = null, otp, name = null, forg
 
 };
 
-function isValidWithin5MinSamePeriod(d1, d2) {
+export default function isValidWithin5MinSamePeriod(d1, d2) {
     d1 = new Date(d1);
     d2 = new Date(d2);
 
@@ -70,7 +71,7 @@ function isValidWithin5MinSamePeriod(d1, d2) {
 }
 
 
-async function hashPassword(password) {
+export async function hashPassword(password) {
     password = password.toString()
     return await bcrypt.hash(password, 10);
 }

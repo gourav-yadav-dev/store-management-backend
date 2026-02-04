@@ -6,7 +6,8 @@ const message = {
     INVALID_EMAIL: 'Invalid email format',
     OTP_SENT: 'OTP sent successfully',
     OTP_VERIFIED: 'OTP verified successfully',
-
+    RESETPASSWORD: "Reset password Successfully",
+    RESENDOTP: "Please Resend OTP",
     OTP_EXPIRED: 'OTP has expired',
     OTP_INVALID: 'Invalid OTP',
     OTP_FORMAT: 'Please enter six digit otp',
@@ -14,11 +15,17 @@ const message = {
     RESENDOTPFORRESETPASSWORD: "Please resend OTP and verify again",
     PASSWORD_REQUIRED: "password Required",
     INVAILD_NAME: 'Name must be at least 4 character',
-    SECRET_ERROR: 'Please register again'
+    SECRET_ERROR: 'Please register again',
+    USERINACTIVE:"User is inactive",
+    USERNOTFOUND:"User is not Register",
+    INVALIDPASSWORD:"Password is Wrong",
+    VERIFYED:"Verify "
   },
-
+  
   AUTH: {
+    REFRESHTOKENMISSING:"Refresh Token is missing please login again",
     LOGIN_SUCCESS: 'Login successful',
+    LOGOUT:"Logout successfully...",
     USERREGISTER: "User Register Sucessfully",
     INVALID_CREDENTIALS: 'Invalid email or password',
     UNAUTHORIZED: 'Unauthorized access'
