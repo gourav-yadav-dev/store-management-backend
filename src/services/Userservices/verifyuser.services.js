@@ -26,6 +26,7 @@ export const verifyOtp = async ({ email, password = null, otp, name = null, forg
     }
 
     if (forgetPasswordOtp == true) {
+        console.log("hjshgjkfdujkfgjjhjhkgdfhghjg")
         // const data = generateToken(email)
         const sixDigit = Math.floor(100000 + Math.random() * 900000);
         const hashtoken = await hashPassword(sixDigit)

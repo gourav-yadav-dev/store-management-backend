@@ -17,7 +17,8 @@ export default (req, res, next) => {
                 .status(400)
                 .json(responseFailure(message.AUTH.INVALID_CREDENTIALS, 400));
         }
-        if (req.url = '/login') {
+        if (req.url == '/login') {
+            console.log(req.url)
             const { password } = req.body;
             if (!password) {
                 return res
@@ -62,6 +63,7 @@ export default (req, res, next) => {
         }
 
         if (req.url == '/verifyotpforgetpass') {
+            console.log("dsfgfjhgjfd")
             req.forgetPasswordOtp = true;
         }
     }

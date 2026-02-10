@@ -16,16 +16,26 @@ const message = {
     PASSWORD_REQUIRED: "password Required",
     INVAILD_NAME: 'Name must be at least 4 character',
     SECRET_ERROR: 'Please register again',
-    USERINACTIVE:"User is inactive",
-    USERNOTFOUND:"User is not Register",
-    INVALIDPASSWORD:"Password is Wrong",
-    VERIFYED:"Verify "
+    USERINACTIVE: "User is inactive",
+    USERNOTFOUND: "User is not Register",
+    INVALIDPASSWORD: "Password is Wrong",
+    VERIFYED: "Verify",
+    VERIFYCATEGORY: "Please Give Category",
+    LENGTHCATEGORY: "Cateogry length should minimum 4 character",
+    LOGINAGAIN: "Please Login Again",
+    CATEGORYALREADY: "Category already available",
+
+
+    ADDCATEGORY: "Add Category Successfullu...",
+    CATEGORYNOTPRESENT: "Category is not available"
+    ,
+    SUCCESSFULLY: "Successfully sent data"
   },
-  
+
   AUTH: {
-    REFRESHTOKENMISSING:"Refresh Token is missing please login again",
+    REFRESHTOKENMISSING: "Refresh Token is missing please login again",
     LOGIN_SUCCESS: 'Login successful',
-    LOGOUT:"Logout successfully...",
+    LOGOUT: "Logout successfully...",
     USERREGISTER: "User Register Sucessfully",
     INVALID_CREDENTIALS: 'Invalid email or password',
     UNAUTHORIZED: 'Unauthorized access'

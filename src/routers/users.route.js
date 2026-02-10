@@ -10,7 +10,7 @@ import userLogoutController from '../controllers/usercontroller/user.logout.cont
 import userRefreshToken from '../controllers/usercontroller/user.resfreshtoken.controller.js'
 
 import userValidateMiddleware from '../middleware/validate.middleware.js';
-import userotpValidateMiddleWare from '../middleware/userRegisterValidateMiddleWare.js';
+import userotpValidateMiddleWare from '../middleware/userregistervalidatemiddleware.js';
 
 const router = Router();
 
