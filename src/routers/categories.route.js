@@ -7,4 +7,5 @@ const router = Router();
 router.post('/category', validatecategory, productcategory)
 router.post('/getcategory',validatecategory,productcategory)
 
+
 export default router;
