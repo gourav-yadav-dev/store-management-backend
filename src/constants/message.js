@@ -25,11 +25,12 @@ const message = {
     LOGINAGAIN: "Please Login Again",
     CATEGORYALREADY: "Category already available",
 
-
-    ADDCATEGORY: "Add Category Successfullu...",
+    EDITCATEGORY: "Edit Successfully...",
+    ADDCATEGORY: "Add Category Successfully...",
     CATEGORYNOTPRESENT: "Category is not available"
     ,
-    SUCCESSFULLY: "Successfully sent data"
+    SUCCESSFULLY: "Successfully sent data",
+    DELETECATEGORY:"Delete Category Successfully..."
   },
 
   AUTH: {
@@ -38,6 +39,7 @@ const message = {
     LOGOUT: "Logout successfully...",
     USERREGISTER: "User Register Sucessfully",
     INVALID_CREDENTIALS: 'Invalid email or password',
+    INVALIDEMAIL: "Please provide Email",
     UNAUTHORIZED: 'Unauthorized access'
   },
 

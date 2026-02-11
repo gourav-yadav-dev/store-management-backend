@@ -2,19 +2,32 @@ import { responseFailure, responseSuccess } from "../../utils/response.utils.js"
 import { productcategories } from '../../services/Productcategories/productcategories.services.js'
 import message from "../../constants/message.js";
 export async function productcategory(req, res) {
-    try {        
-            const { category, email } = req.body
-        const token = req.headers.authorization;
-        // console.log(token)
-        const data = await productcategories(category, token, email,req.retrivecategory)
-        if (data == true) {
-          return  res.status(200).json(responseSuccess(message.USER.ADDCATEGORY, null, 200, null))
-        }
-        console.log(data)
-        res.status(200).json(responseSuccess(message.USER.SUCCESSFULLY,data, 200, null))
+  try {
+    console.log("hello  i am here")
+    if (!req.deleteCateogory == true) {
+      var { category, email } = req.body
+    }
+    const token = req.headers.authorization;
+    // console.log(token)
+    const data = await productcategories(category, token, email, req.retrivecategory, req.editCategory, req.params.id, req.deleteCateogory)
+
+    console.log(data)
+    if (data.update == 1) {
+      return res.status(200).json(responseSuccess(message.USER.EDITCATEGORY, null, 200, null))
+    }
+    if (data.delete == 1)
+      return res.status(200).json(responseSuccess(message.USER.DELETECATEGORY, null, 200, null))
+    {
 
     }
-    catch (error) {
-      return  res.status(500).json(responseFailure(error.message, 500))
+    if (data == true) {
+      return res.status(200).json(responseSuccess(message.USER.ADDCATEGORY, null, 200, null))
     }
+    res.status(200).json(responseSuccess(message.USER.SUCCESSFULLY, data, 200, null))
+
+  }
+  catch (error) {
+    console.log(error)
+    return res.status(error.statusCode || 500).json(responseFailure(error.message, error.statusCode || 500))
+  }
 }

@@ -5,7 +5,9 @@ const router = Router();
 
 
 router.post('/category', validatecategory, productcategory)
-router.post('/getcategory',validatecategory,productcategory)
+router.post('/getcategory', validatecategory, productcategory)
+router.put('/editcategory/:id', validatecategory, productcategory)
+router.delete('/deletecategory/:id', validatecategory, productcategory)
 
 
 export default router;

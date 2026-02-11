@@ -2,11 +2,8 @@ import pool from "../../config/db.js";
 import jwt from 'jsonwebtoken';
 import message from "../../constants/message.js";
 
-export async function productcategories(cateogry = null, token, email, retrivecategory = false) {
-
-    console.log(retrivecategory)
+export async function productcategories(cateogry = null, token, email, retrivecategory = false, EditCategory = false, id = null, deleteCategory = false) {
     token = token.split(' ')[1];
-
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             throw new Error(message.USER.LOGINAGAIN);
@@ -14,7 +11,7 @@ export async function productcategories(cateogry = null, token, email, retriveca
     });
     if (retrivecategory == true) {
         const [existCategory] = await pool.execute(
-            'SELECT category_name from categories where email=? AND status=?', [email, "ACTIVE"]
+            'SELECT category_name,category_id from categories where email=? AND status=?', [email, "ACTIVE"]
         )
 
         if (existCategory.length == 0) {
@@ -23,13 +20,46 @@ export async function productcategories(cateogry = null, token, email, retriveca
         return existCategory;
     }
 
+    if (EditCategory == true || deleteCategory == true) {
+        let existCategory
+        const [verify] = await pool.execute(
+            'Select category_id from  categories  where category_id=?', [id]
+        )
+        if (verify.length != 0) {
+            if (EditCategory == true) {
+                [existCategory] = await pool.execute(
+                    'UPDATE categories set category_name=? where category_id=?', [cateogry, id]
+                )
+                // const updateCategory=
+                return { update: existCategory.affectedRows }
+            }
+            if (deleteCategory == true) {
+                [existCategory] = await pool.execute(
+                    'Delete from categories where category_id=?', [id]
+                )
+                // const deleteCategory={delete:existCategory.affectedRows}
+                return { delete: existCategory.affectedRows };
+            }
+        }
+        else {
+            const error = new Error(message.USER.CATEGORYNOTPRESENT);
+            error.statusCode = 400;
+            throw error;
+        }
+
+        // if(verify[0].categor)
+
+    }
+
+
 
     const [existCategory] = await pool.execute(
         'SELECT category_name from categories where category_name=? ', [cateogry]
     )
     if (existCategory.length != 0) {
-        console.log(existCategory.length)
-        throw new Error(message.USER.CATEGORYALREADY)
+        const error = new Error(message.USER.CATEGORYALREADY);
+        error.statusCode = 400;
+        throw error;
     }
     const [data] = await pool.execute(
         'INSERT into categories (category_name, status,email) VALUES (?, ?,?)', [cateogry, "ACTIVE", email]
