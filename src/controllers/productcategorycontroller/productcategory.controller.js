@@ -8,10 +8,7 @@ export async function productcategory(req, res) {
       var { category, email } = req.body
     }
     const token = req.headers.authorization;
-    // console.log(token)
-    const data = await productcategories(category, token, email, req.retrivecategory, req.editCategory, req.params.id, req.deleteCateogory)
-
-    console.log(data)
+    const data = await productcategories(category, token, email, req.retrivecategory, req.editCategory, req.params.id, req.deleteCateogory)   
     if (data.update == 1) {
       return res.status(200).json(responseSuccess(message.USER.EDITCATEGORY, null, 200, null))
     }

@@ -10,6 +10,6 @@ export const responseSuccess = (message, data = null, statuscode = 200, token = 
 
 export const responseFailure = (message, statuscode = 400) => ({
   success: false,
-  message,
+  message,  
   statuscode
 });
