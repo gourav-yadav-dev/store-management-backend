@@ -24,7 +24,6 @@ export async function productcategory(req, res) {
 
   }
   catch (error) {
-    console.log(error)
     return res.status(error.statusCode || 500).json(responseFailure(error.message, error.statusCode || 500))
   }
 }

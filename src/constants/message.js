@@ -24,13 +24,17 @@ const message = {
     LENGTHCATEGORY: "Cateogry length should minimum 4 character",
     LOGINAGAIN: "Please Login Again",
     CATEGORYALREADY: "Category already available",
-
+    CATEGORY: "please provide the category",
     EDITCATEGORY: "Edit Successfully...",
     ADDCATEGORY: "Add Category Successfully...",
-    CATEGORYNOTPRESENT: "Category is not available"
+    CATEGORYNOTPRESENT: "Category is not available",
+    ADDPRODUCT:"Add product succssfully..."
     ,
     SUCCESSFULLY: "Successfully sent data",
-    DELETECATEGORY:"Delete Category Successfully..."
+    DELETECATEGORY: "Delete Category Successfully...",
+    PRODUCTEMPTY: "Product name is Empty ",
+    PRODUCTLENGTH: "Product length should be greater than 3 char"
+
   },
 
   AUTH: {
