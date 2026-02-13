@@ -3,12 +3,7 @@ import jwt from 'jsonwebtoken';
 import message from "../../constants/message.js";
 
 export async function productcategories(cateogry = null, token, email, retrivecategory = false, EditCategory = false, id = null, deleteCategory = false) {
-    token = token.split(' ')[1];
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            throw new Error(message.USER.LOGINAGAIN);
-        }
-    });
+
     if (retrivecategory == true) {
         const [existCategory] = await pool.execute(
             'SELECT category_name,category_id from categories where email=? AND status=?', [email, "ACTIVE"]

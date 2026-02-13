@@ -1,5 +1,27 @@
 
 
+// import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
+// import { verifyEmail } from '../../services/Userservices/user.services.js';
+// import message from '../../constants/message.js';
+
+// export const registers = async (req, res) => {
+//   const { email } = req.body;
+
+//   try {
+//     const sendMail = await verifyEmail({ email });
+
+//     if (sendMail === true) {
+//       return res
+//         .status(200)
+//         .json(responseSuccess(message.USER.OTP_SENT, true, 200));
+//     }
+//   } catch (error) {
+//     return res
+//       .status(400)
+//       .json(responseFailure(error.message, 400));
+//   }
+// };
+
 import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
 import { verifyEmail } from '../../services/Userservices/user.services.js';
 import message from '../../constants/message.js';
@@ -11,13 +33,18 @@ export const registers = async (req, res) => {
     const sendMail = await verifyEmail({ email });
 
     if (sendMail === true) {
-      return res
-        .status(200)
-        .json(responseSuccess(message.USER.OTP_SENT, true, 200));
+      return responseSuccess(
+        res,
+        message.USER.OTP_SENT,
+        true
+      );
     }
+
   } catch (error) {
-    return res
-      .status(400)
-      .json(responseFailure(error.message, 400));
+    return responseFailure(
+      res,
+      error.message,
+      400
+    );
   }
 };

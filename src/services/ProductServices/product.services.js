@@ -7,25 +7,32 @@ export async function productservice(email, productName, categoryId, token) {
     const [findEmail] = await pool.query(
         UserQueries.findUser, [email]
     )
-
     if (findEmail.length != 0) {
         const [category] = await pool.query(
             CategoryQueries.findCategory, [categoryId, email]
         )
-        console.log("category")
-        console.log(category)
-        console.log("category")
         if (category.length == 0) {
             const error = new Error(message.USER.CATEGORYNOTPRESENT);
             error.statusCode = 400;
             throw error;
         }
         else {
-            const [addproduct] = await pool.query(
-                productQueries.createProduct, [email, productName, categoryId]
+            const [checkExistingProduct] = await pool.query(
+                productQueries.getProductByName, [productName]
             )
-            if (addproduct.affectedRows == 1) {
-                return true;    
+            if (checkExistingProduct.length == 0) {
+                const [addproduct] = await pool.query(
+                    productQueries.createProduct, [email, productName, categoryId]
+                )
+                if (addproduct.affectedRows == 1) {
+                    return true;
+                }
+            }
+            else {
+                const error = new Error(message.PRODUCT.PRODUCTALREADY);
+                error.statusCode = 400;
+                throw error;
+
             }
         }
     }
@@ -33,7 +40,6 @@ export async function productservice(email, productName, categoryId, token) {
         const error = new Error(message.USER.SECRET_ERROR);
         error.statusCode = 400;
         throw error;
-
     }
 
 }

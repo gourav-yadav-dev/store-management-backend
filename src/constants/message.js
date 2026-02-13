@@ -50,6 +50,10 @@ const message = {
   COMMON: {
     SERVER_ERROR: 'Something went wrong',
     VALIDATION_ERROR: 'Invalid request data'
+  },
+
+  PRODUCT:{
+    PRODUCTALREADY:"Product is already Available"
   }
 };
 
