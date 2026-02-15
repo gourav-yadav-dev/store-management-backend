@@ -46,10 +46,46 @@ import { verifyTokenUtil } from '../utils/jwt.utils.js'
 export default async (req, res, next) => {
 
     try {
-        const { email, productName, categoryId } = req.body;
+        // verifyTokenUtil(req.headers.authorization)
+        console.log(req.path)
+        if (req.path === '/getproduct' || req.path == '/getproductbyname') {
+            const page = req.query.page || 1;
+            const limit = req.query.limit
+            if (req.path === '/getproductbyname') {
+                const search = req.query.search;
+                if (!search) {
+                    return responseFailure(res, message.COMMON.SERVER_ERROR)
+                }
+            }
 
-        verifyTokenUtil(req.headers.authorization)
-        // Email validation
+            if (!page || isNaN(page) || !limit || isNaN(limit)) {
+
+                return responseFailure(res, message.COMMON.SERVER_ERROR)
+            }
+            var { email } = req.body
+        }
+        else {
+            var { email, productName, categoryId } = req.body;
+            if (!productName) {
+                return responseFailure(res, message.USER.PRODUCTEMPTY);
+            }
+
+            if (productName.trim().length < 3) {
+                return responseFailure(res, message.USER.PRODUCTLENGTH);
+            }
+
+            // Category validation
+            if (!categoryId) {
+                return responseFailure(res, message.USER.VERIFYCATEGORY);
+            }
+
+            if (isNaN(categoryId)) {
+                return responseFailure(res, message.USER.CATEGORY);
+            }
+        }
+
+
+
         if (!email) {
             return responseFailure(res, message.AUTH.INVALIDEMAIL);
         }
@@ -59,24 +95,7 @@ export default async (req, res, next) => {
         if (!emailRegex.test(email)) {
             return responseFailure(res, message.USER.INVALID_EMAIL);
         }
-
-        // Product name validation
-        if (!productName) {
-            return responseFailure(res, message.USER.PRODUCTEMPTY);
-        }
-
-        if (productName.trim().length < 3) {
-            return responseFailure(res, message.USER.PRODUCTLENGTH);
-        }
-
-        // Category validation
-        if (!categoryId) {
-            return responseFailure(res, message.USER.VERIFYCATEGORY);
-        }
-
-        if (isNaN(categoryId)) {
-            return responseFailure(res, message.USER.CATEGORY);
-        }
+        
         next();
     }
     catch (error) {

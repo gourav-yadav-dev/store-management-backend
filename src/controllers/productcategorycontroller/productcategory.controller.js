@@ -52,32 +52,28 @@ export async function productcategory(req, res) {
       req.params.id,
       req.deleteCateogory
     );
-
     if (data.update == 1) {
-      return res.status(200).json(
-        responseSuccess(message.USER.EDITCATEGORY, null, 200, null)
-      );
+      console.log("inside this")
+      return responseSuccess(res, message.USER.EDITCATEGORY, null, null, 200)
+
     }
 
     if (data.delete == 1) {
-      return res.status(200).json(
-        responseSuccess(message.USER.DELETECATEGORY, null, 200, null)
-      );
+      return responseSuccess(res, message.USER.DELETECATEGORY, null, 200, null)
     }
 
     if (data == true) {
-      return res.status(200).json(
-        responseSuccess(message.USER.ADDCATEGORY, null, 200, null)
-      );
+
+      return responseSuccess(res, message.USER.ADDCATEGORY, null, 200, null)
+
     }
 
-    return res.status(200).json(
-      responseSuccess(message.USER.SUCCESSFULLY, data, 200, null)
-    );
+    return responseSuccess(res, message.USER.SUCCESSFULLY, data, 200, null)
+
 
   } catch (error) {
-    return res.status(error.statusCode || 500).json(
-      responseFailure(error.message, error.statusCode || 500)
-    );
+
+    return responseFailure(res, error.message, error.statusCode || 500)
+
   }
 }

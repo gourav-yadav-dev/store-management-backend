@@ -16,16 +16,21 @@ export async function productcategories(cateogry = null, token, email, retriveca
     }
 
     if (EditCategory == true || deleteCategory == true) {
+        console.log("here i am ")
         let existCategory
         const [verify] = await pool.execute(
             'Select category_id from  categories  where category_id=?', [id]
         )
+        console.log(verify)
         if (verify.length != 0) {
             if (EditCategory == true) {
                 [existCategory] = await pool.execute(
                     'UPDATE categories set category_name=? where category_id=?', [cateogry, id]
                 )
                 // const updateCategory=
+                console.log("here sdldf00")
+                console.log(existCategory)
+                console.log("here sdldf00")
                 return { update: existCategory.affectedRows }
             }
             if (deleteCategory == true) {

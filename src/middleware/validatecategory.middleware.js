@@ -8,6 +8,7 @@ export default async (req, res, next) => {
         verifyTokenUtil(req.headers.authorization)
         if (req.url.split('/')[1] === "editcategory" || req.url.split('/')[1] == "deletecategory") {
             const id = req.params.id
+            console.log(`id is ${id}`)
             if (isNaN(id)) {
                 // return res.status(400).json(responseFailure(message.COMMON.VALIDATION_ERROR, 400))
                 return responseFailure(res, message.COMMON.VALIDATION_ERROR, 400)

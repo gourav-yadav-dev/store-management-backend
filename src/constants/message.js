@@ -53,7 +53,9 @@ const message = {
   },
 
   PRODUCT:{
-    PRODUCTALREADY:"Product is already Available"
+    PRODUCTALREADY:"Product is already Available",
+    PRODUCTNO:"Product is not Available",
+    PRODUCTSUCCESSFULLY:"Product Sent Succesfully..."
   }
 };
 
