@@ -6,19 +6,18 @@ export const productQueries = {
     `,
 
   getProductById: `
-      SELECT * FROM products
-      WHERE id =? ;
+      SELECT product_id FROM products
+      WHERE product_id =?;
     `,
 
   deleteProduct: `
       DELETE FROM products
-      WHERE id = ?;
+      WHERE product_id = ?;
     `
   ,
   getProductByName: `
     Select product_name from products
     where product_name=?;
-
     `
   ,
   getProduct: `
@@ -51,8 +50,10 @@ AND p.status = 'ACTIVE'
 AND p.product_name LIKE ?
 ORDER BY p.product_id DESC
 LIMIT ? OFFSET ?;
+    `,
 
-
+  editProduct: `
+ UPDATE products SET
     `
 
 
@@ -68,6 +69,10 @@ export const UserQueries = {
 
 export const CategoryQueries = {
   findCategory: ` SELECT category_id, email FROM categories
-WHERE category_id = ? AND email=?;`
+WHERE category_id = ? AND email=?;`,
+  findCategoryById:
+    `SELECT category_id, email FROM categories
+WHERE category_id = ?;
 
+`
 }

@@ -44,10 +44,9 @@ import { responseFailure } from "../utils/response.utils.js";
 import { verifyTokenUtil } from '../utils/jwt.utils.js'
 
 export default async (req, res, next) => {
-
     try {
-        // verifyTokenUtil(req.headers.authorization)
-        console.log(req.path)
+        const decoded = verifyTokenUtil(req.headers.authorization)
+        req.user = decoded
         if (req.path === '/getproduct' || req.path == '/getproductbyname') {
             const page = req.query.page || 1;
             const limit = req.query.limit
@@ -57,12 +56,11 @@ export default async (req, res, next) => {
                     return responseFailure(res, message.COMMON.SERVER_ERROR)
                 }
             }
-
             if (!page || isNaN(page) || !limit || isNaN(limit)) {
 
                 return responseFailure(res, message.COMMON.SERVER_ERROR)
             }
-            var { email } = req.body
+            var email = req.user.email
         }
         else {
             var { email, productName, categoryId } = req.body;
@@ -83,9 +81,6 @@ export default async (req, res, next) => {
                 return responseFailure(res, message.USER.CATEGORY);
             }
         }
-
-
-
         if (!email) {
             return responseFailure(res, message.AUTH.INVALIDEMAIL);
         }
@@ -95,7 +90,7 @@ export default async (req, res, next) => {
         if (!emailRegex.test(email)) {
             return responseFailure(res, message.USER.INVALID_EMAIL);
         }
-        
+
         next();
     }
     catch (error) {
