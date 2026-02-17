@@ -7,8 +7,6 @@ export async function productfilterservice(limit, offset, email, search = null) 
     )
     if (findUser[0].length != 0) {
         if (search!=null) {
-            console.log(search)
-            console.log("inside condition")
             const [products] = await pool.query(
                 productQueries.FilterProduct, [email, email, `%${search}%`, parseInt(limit), parseInt(offset)]
             )

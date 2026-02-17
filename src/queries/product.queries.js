@@ -55,8 +55,8 @@ LIMIT ? OFFSET ?;
   editProduct: `
  UPDATE products SET
     `
-
-
+    ,
+    
 };
 
 

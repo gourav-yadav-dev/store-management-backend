@@ -56,7 +56,9 @@ const message = {
     PRODUCTALREADY:"Product is already Available",
     PRODUCTNO:"Product is not Available",
     PRODUCTSUCCESSFULLY:"Product Sent Succesfully...",
-    UPDATEPRODUCT:"Update product Successfully..."
+    UPDATEPRODUCT:"Update product Successfully...",
+    DELETEPRODUCT:"Delete Product Successfully...",
+    
   }
 };
 

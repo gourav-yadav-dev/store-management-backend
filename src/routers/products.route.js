@@ -10,5 +10,6 @@ router.post('/product', productMiddleware, productController)
 router.get('/getproduct', productMiddleware, productfilter)
 router.get('/getproductbyname', productMiddleware, productfilter)
 router.patch('/editproduct', producteditdelete, producteditdeletecontroller)
+router.delete('/deleteproduct', producteditdelete, producteditdeletecontroller)
 
 export default router;

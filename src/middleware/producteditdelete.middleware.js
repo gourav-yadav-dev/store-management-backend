@@ -6,9 +6,7 @@ export async function producteditdelete(req, res,next) {
         const decoded = verifyTokenUtil(req.headers.authorization)
         req.user = decoded
         var email = req.user.email
-        console.log(`email id ${email}`)
         const productid = req.query.id;
-        console.log(`productid is ${productid}`)
         if (isNaN(productid) || !productid) {
             return responseFailure(res, message.COMMON.SERVER_ERROR);
         }
