@@ -28,7 +28,7 @@ const message = {
     EDITCATEGORY: "Edit Successfully...",
     ADDCATEGORY: "Add Category Successfully...",
     CATEGORYNOTPRESENT: "Category is not available",
-    ADDPRODUCT:"Add product succssfully..."
+    ADDPRODUCT: "Add product succssfully..."
     ,
     SUCCESSFULLY: "Successfully sent data",
     DELETECATEGORY: "Delete Category Successfully...",
@@ -52,13 +52,24 @@ const message = {
     VALIDATION_ERROR: 'Invalid request data'
   },
 
-  PRODUCT:{
-    PRODUCTALREADY:"Product is already Available",
-    PRODUCTNO:"Product is not Available",
-    PRODUCTSUCCESSFULLY:"Product Sent Succesfully...",
-    UPDATEPRODUCT:"Update product Successfully...",
-    DELETEPRODUCT:"Delete Product Successfully...",
-    
+  PRODUCT: {
+    PRODUCTALREADY: "Product is already Available",
+    PRODUCTNO: "Product is not Available",
+    PRODUCTSUCCESSFULLY: "Product Sent Succesfully...",
+    UPDATEPRODUCT: "Update product Successfully...",
+    DELETEPRODUCT: "Delete Product Successfully...",
+
+  },
+  COMPANY: {
+    COMPANTYMSG: "Please Provide Company Name or Company Name should be Minimum 3 Character",
+    MOBILENO:"Please Provide Phone NO",
+    VALIDATEMOBILE:"Mobile number is Incorrect",
+    GSTNUMBER:"Please Provide GST Number",
+    COMPANYADDRESS:"Please Provide Company Address",
+    COMPANTYEXIST:"Company already Available"
+    ,
+    ADDCOMPANY:"Add Company Succesfully..."
+
   }
 };
 
