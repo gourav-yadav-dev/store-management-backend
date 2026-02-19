@@ -66,9 +66,14 @@ const message = {
     VALIDATEMOBILE:"Mobile number is Incorrect",
     GSTNUMBER:"Please Provide GST Number",
     COMPANYADDRESS:"Please Provide Company Address",
-    COMPANTYEXIST:"Company already Available"
-    ,
-    ADDCOMPANY:"Add Company Succesfully..."
+    COMPANTYEXIST:"Company already Available",
+
+    
+    ADDCOMPANY:"Add Company Succesfully...",
+    COMPANYNOTEXIST:"Company not Exist Please add Company",
+    UPDATECOMPANY:"Update Company Detail ",
+    ALREADYNAME:"Company Name or GST Number is already Existing",
+    DELETECOMPANY:"Delete Company Successfully..."
 
   }
 };
