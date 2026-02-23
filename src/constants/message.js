@@ -62,18 +62,18 @@ const message = {
   },
   COMPANY: {
     COMPANTYMSG: "Please Provide Company Name or Company Name should be Minimum 3 Character",
-    MOBILENO:"Please Provide Phone NO",
-    VALIDATEMOBILE:"Mobile number is Incorrect",
-    GSTNUMBER:"Please Provide GST Number",
-    COMPANYADDRESS:"Please Provide Company Address",
-    COMPANTYEXIST:"Company already Available",
+    MOBILENO: "Please Provide Phone NO",
+    VALIDATEMOBILE: "Mobile number is Incorrect",
+    GSTNUMBER: "Please Provide GST Number",
+    COMPANYADDRESS: "Please Provide Company Address",
+    COMPANTYEXIST: "Company already Available",
 
-    
-    ADDCOMPANY:"Add Company Succesfully...",
-    COMPANYNOTEXIST:"Company not Exist Please add Company",
-    UPDATECOMPANY:"Update Company Detail ",
-    ALREADYNAME:"Company Name or GST Number is already Existing",
-    DELETECOMPANY:"Delete Company Successfully..."
+
+    ADDCOMPANY: "Add Company Succesfully...",
+    COMPANYNOTEXIST: "Company not Exist Please add Company",
+    UPDATECOMPANY: "Update Company Detail ",
+    ALREADYNAME: "Company Name or GST Number is already Existing",
+    DELETECOMPANY: "Delete Company Successfully..."
 
   }
 };

@@ -25,3 +25,10 @@ export const deleteCompanyById = async (id) => {
     const [rows] = await pool.execute(`DELETE from companies where company_id=?`, [id])
     return rows;
 }
+
+export const getComapany = async (email, limit, offset) => {
+
+    const [rows] = await pool.execute(`Select company_id,company_name,phone,gst_number,address,status,created_at from companies where email=? LIMIT ${limit} OFFSET ${offset} `, [email]);
+    console.log(rows)
+    return rows
+}
