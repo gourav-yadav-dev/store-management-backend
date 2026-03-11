@@ -28,7 +28,8 @@ const message = {
     EDITCATEGORY: "Edit Successfully...",
     ADDCATEGORY: "Add Category Successfully...",
     CATEGORYNOTPRESENT: "Category is not available",
-    ADDPRODUCT: "Add product succssfully..."
+    ADDPRODUCT: "Add product succssfully...",
+    USERNOTFOUNDS:"User not Found"
     ,
     SUCCESSFULLY: "Successfully sent data",
     DELETECATEGORY: "Delete Category Successfully...",
@@ -67,15 +68,23 @@ const message = {
     GSTNUMBER: "Please Provide GST Number",
     COMPANYADDRESS: "Please Provide Company Address",
     COMPANTYEXIST: "Company already Available",
-
-
     ADDCOMPANY: "Add Company Succesfully...",
     COMPANYNOTEXIST: "Company not Exist Please add Company",
     UPDATECOMPANY: "Update Company Detail ",
     ALREADYNAME: "Company Name or GST Number is already Existing",
-    DELETECOMPANY: "Delete Company Successfully..."
+    DELETECOMPANY: "Delete Company Successfully...",
+    COMPANYNOTFOUND:"Company is not found"
+
+  },
+  PURCHASE:{
+    INVALIDINVOICE: "Please Provide Invoice No Or Date",
+    PURCHASEITEM:"Please add Purchase Item"
+    ,
+    DUPLICCATE:"This Invoice is already Available",
+    PUCRCHASEITEM:"Product add Succssfully..."
 
   }
 };
+
 
 export default message;

@@ -1,12 +1,12 @@
 import { responseFailure } from '../../utils/response.utils.js'
 import message from '../../constants/message.js';
 import { isValidPhoneNumber } from "libphonenumber-js";
-export async function companyUpdateDeleteMiddleware(req, res, next) {
+export async function   companyUpdateDeleteMiddleware(req, res, next) {
     try {
         // const companyId = req.query.id;
-        // const decoded = verifyTokenUtil(req.headers.authorization)
-        // req.user = decoded
-        // var email = req.user.email
+        const decoded = verifyTokenUtil(req.headers.authorization)
+        req.user = decoded
+        var email = req.user.email
         const { companyName, phone } = req.body;
         const companyId = req.query.id;
         if (isNaN(companyId) || !companyId) {
@@ -23,14 +23,14 @@ export async function companyUpdateDeleteMiddleware(req, res, next) {
             }
         }
 
-        // if (!email) {
-        //     return responseFailure(res, message.AUTH.INVALIDEMAIL);
-        // }
-        // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+            return responseFailure(res, message.AUTH.INVALIDEMAIL);
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // if (!emailRegex.test(email)) {
-        //     return responseFailure(res, message.USER.INVALID_EMAIL);
-        // }
+        if (!emailRegex.test(email)) {
+            return responseFailure(res, message.USER.INVALID_EMAIL);
+        }
         next()
     }
     catch (error) {

@@ -11,4 +11,4 @@ router.get('/getcompany', companyMiddleWare, companyController)
 router.patch('/updatecompany', companyUpdateDeleteMiddleware, companyUpdateDeleteController)
 router.delete('/deletecompany', companyUpdateDeleteMiddleware, companyUpdateDeleteController)
 
-export default router
+export default router;
