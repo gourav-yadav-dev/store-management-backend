@@ -16,8 +16,43 @@ export const lastPurchaseId = async () => {
 }
 
 export const AddPurchaseItem = async (values) => {
-    console.log("check inside")
-    console.log(values)
     const [rows] = await pool.query(`INSERT INTO purchase_items (purchase_id, product_id, quantity_units, actual_price) VALUES ?`, [values])
     return rows
 }
+
+
+export const allPurchaseItem = async (id) => {
+    const [rows] = await pool.execute(
+        `
+        SELECT 
+            p.purchase_id,
+            p.invoice_number,
+            p.purchase_date,
+            p.company_id,
+
+            c.company_name,
+
+            pr.product_name,
+            pr.product_id,
+
+            pi.quantity_units,
+            pi.actual_price
+
+        FROM purchases p
+
+        JOIN companies c 
+            ON p.company_id = c.company_id
+
+        JOIN purchase_items pi 
+            ON p.purchase_id = pi.purchase_id
+
+        JOIN products pr 
+            ON pi.product_id = pr.product_id
+
+        WHERE p.user_id = ?
+        `,
+        [id]
+    );
+
+    return rows;
+};

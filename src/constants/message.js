@@ -49,6 +49,7 @@ const message = {
   },
 
   COMMON: {
+    
     SERVER_ERROR: 'Something went wrong',
     VALIDATION_ERROR: 'Invalid request data'
   },
@@ -81,7 +82,9 @@ const message = {
     PURCHASEITEM:"Please add Purchase Item"
     ,
     DUPLICCATE:"This Invoice is already Available",
-    PUCRCHASEITEM:"Product add Succssfully..."
+    PUCRCHASEITEM:"Product add Succssfully...",
+    PURCHASENOTFOUND:"Purchase Not Found",
+    DATASENT:"Send Purchase Detail Successfully..."
 
   }
 };
