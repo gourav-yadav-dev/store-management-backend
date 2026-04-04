@@ -4,9 +4,11 @@ import { purchaseGetServices } from '../../services/PuchaseServices/purchaseget.
 import { responseFailure, responseSuccess } from '../../utils/response.utils.js';
 export async function purchaseController(req, res, next) {
     try {
-        if (req.path == '/getpurchaseItem') {
-            console.log("hello world")
-            const purchaseDetail = await purchaseGetServices(req.query.id)
+
+        if (req.path == '/getpurchaseItem' || req.path == '/getpurchaseByInvoice') {
+            const offset = (req.query.page - 1) * req.query.limit
+            const invoiceNo = req.query.invoiceno;
+            const purchaseDetail = await purchaseGetServices(req.query.id, offset, req.query.limit, invoiceNo)
             return responseSuccess(res, message.PURCHASE.DATASENT, purchaseDetail, null, 200)
         }
         else {
@@ -24,5 +26,4 @@ export async function purchaseController(req, res, next) {
             error.statusCode || 500
         );
     }
-
 }

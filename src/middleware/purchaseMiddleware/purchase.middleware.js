@@ -13,9 +13,21 @@ export async function purchaseMiddleware(req, res, next) {
         // if (!emailRegex.test(email)) {
         //     return responseFailure(res, message.USER.INVALID_EMAIL);
         // }
+
+        if (req.path == '/getpurchaseByInvoice') {
+            const invoice_number =req.query.invoiceno;
+            if(!invoice_number)
+            {
+                return responseFailure(res,message.PURCHASE.PURCHASEINVOICEFORMAT)
+            }
+        }
         if (req.path == '/getpurchaseItem') {
             const id = req.query.id;
-            if (isNaN(id)) {
+            const page = req.query.page;
+            const limit = req.query.limit;
+            console.log(page)
+            console.log(limit)
+            if (isNaN(id) || isNaN(page) || isNaN(limit)) {
                 return responseFailure(res, message.COMMON.SERVER_ERROR);
             }
         }

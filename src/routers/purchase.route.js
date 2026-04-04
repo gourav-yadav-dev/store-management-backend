@@ -5,5 +5,6 @@ import { purchaseController } from '../controllers/purchaseController/purchaseCo
 const router = Router();
 router.post('/purchaseItem', purchaseMiddleware, purchaseController)
 router.get('/getpurchaseItem', purchaseMiddleware, purchaseController)
+router.get('/getpurchaseByInvoice', purchaseMiddleware, purchaseController)
 export default router;
 

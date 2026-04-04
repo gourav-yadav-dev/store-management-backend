@@ -21,8 +21,8 @@ export const AddPurchaseItem = async (values) => {
 }
 
 
-export const allPurchaseItem = async (id) => {
-    const [rows] = await pool.execute(
+export const allPurchaseItem = async (id, offset, limit) => {
+    const [rows] = await pool.query(
         `
         SELECT 
             p.purchase_id,
@@ -50,9 +50,49 @@ export const allPurchaseItem = async (id) => {
             ON pi.product_id = pr.product_id
 
         WHERE p.user_id = ?
-        `,
-        [id]
+         LIMIT ? OFFSET ?`,
+        [id, limit, offset]
     );
-
     return rows;
 };
+
+
+
+export const findPurchaseByInvoiceNo = async (invoice) => {
+    const [rows] = await pool.execute(
+        `
+        SELECT 
+        p.purchase_id,
+        p.invoice_number,
+        p.purchase_date,
+        p.company_id,
+
+        c.company_name,
+        pr.product_name,
+        pr.product_id,
+
+        pi.quantity_units,
+        pi.actual_price
+
+    FROM purchases p
+
+    JOIN companies c 
+        ON p.company_id = c.company_id
+
+    JOIN purchase_items pi 
+        ON p.purchase_id = pi.purchase_id
+
+    JOIN products pr 
+        ON pi.product_id = pr.product_id
+
+    WHERE p.invoice_number = ?
+        `,
+        [invoice]
+
+
+    )
+
+    return rows
+
+
+}

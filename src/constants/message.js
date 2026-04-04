@@ -84,7 +84,8 @@ const message = {
     DUPLICCATE:"This Invoice is already Available",
     PUCRCHASEITEM:"Product add Succssfully...",
     PURCHASENOTFOUND:"Purchase Not Found",
-    DATASENT:"Send Purchase Detail Successfully..."
+    DATASENT:"Send Purchase Detail Successfully...",
+    PURCHASEINVOICEFORMAT:"Please Provide Format of Invoice"
 
   }
 };
