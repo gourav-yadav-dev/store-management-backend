@@ -9,6 +9,7 @@ export async function purchaseGetServices(id, offset, limit, invoice = false) {
     else {
         const userId = await userById(parseInt(id))
         if (userId.length > 0) {
+            
             const purchaseItemDetail = await allPurchaseItem(parseInt(id), parseInt(offset), parseInt(limit))
             if (purchaseItemDetail.length > 0) {
                 return purchaseItemDetail

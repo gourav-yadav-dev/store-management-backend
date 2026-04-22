@@ -1,5 +1,4 @@
 import pool from "../config/db.js";
-
 export const purchaseItem = async (company_id, user_id, invoice_number, purchase_date) => {
     const [rows] = await pool.execute(`INSERT into purchases(company_id,user_id,invoice_number,purchase_date) VALUES (?, ?, ?, ?)`, [company_id, user_id, invoice_number, purchase_date])
     return rows
@@ -14,13 +13,36 @@ export const lastPurchaseId = async () => {
     const [rows] = await pool.execute(`SELECT purchase_id from purchases where purchase_id=LAST_INSERT_ID()`)
     return rows;
 }
+export const updateStock = async (values) => {
+    const stockValues = values.map(item => [
+        item[1], // product_id
+        item[2]  // available_items
+    ]);
 
-export const AddPurchaseItem = async (values) => {
-    const [rows] = await pool.query(`INSERT INTO purchase_items (purchase_id, product_id, quantity_units, actual_price) VALUES ?`, [values])
-    return rows
+    const [rows] = await pool.query(
+        `INSERT INTO stock (product_id, available_items)
+         VALUES ?
+         ON DUPLICATE KEY UPDATE
+         available_items = available_items + VALUES(available_items)`,
+        [stockValues]
+    );
+
+    return rows;
 }
 
+export const AddPurchaseItem = async (values) => {
+    const [rows] = await pool.query(
+        `INSERT INTO purchase_items 
+        (purchase_id, product_id, quantity_units, actual_price) 
+        VALUES ?
+        ON DUPLICATE KEY UPDATE
+            quantity_units = quantity_units + VALUES(quantity_units),
+            actual_price = VALUES(actual_price)`,
+        [values]
+    );
 
+    return rows;
+}
 export const allPurchaseItem = async (id, offset, limit) => {
     const [rows] = await pool.query(
         `

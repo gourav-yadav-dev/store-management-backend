@@ -8,6 +8,7 @@ export async function purchaseController(req, res, next) {
         if (req.path == '/getpurchaseItem' || req.path == '/getpurchaseByInvoice') {
             const offset = (req.query.page - 1) * req.query.limit
             const invoiceNo = req.query.invoiceno;
+            console.log("heere")
             const purchaseDetail = await purchaseGetServices(req.query.id, offset, req.query.limit, invoiceNo)
             return responseSuccess(res, message.PURCHASE.DATASENT, purchaseDetail, null, 200)
         }
